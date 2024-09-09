@@ -92,15 +92,16 @@ async function addExperience(event) {
 
 // Funktion för att visa felmeddelanden på sidan
 function displayErrors(errors) {
-    const errorList = document.getElementById('error-messages');
+    let errorList = document.getElementById('error-messages');
     if (!errorList) {
-        // Skapa ett element för felmeddelanden om det inte finns
         const form = document.getElementById('workexperience-form');
-        const errorList = document.createElement('ul');
+        errorList = document.createElement('ul');
         errorList.id = 'error-messages';
         errorList.style.color = 'red';
         form.parentNode.insertBefore(errorList, form);
     }
+
+    errorList.innerHTML = ''; // Rensa gamla felmeddelanden
 
     // Lägg till varje felmeddelande till listan
     errors.forEach(error => {
