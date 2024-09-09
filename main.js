@@ -64,6 +64,11 @@ async function addExperience(event) {
     const formData = new FormData(event.target);
     const experienceData = Object.fromEntries(formData);
 
+     // Om slutdatum är tomt, sätt det till "Pågående"
+     if (!experienceData.enddate) {
+        experienceData.enddate = "Pågående";
+    }
+    
     try {
         const response = await fetch(API_URL, {
             method: 'POST',
